@@ -1,0 +1,125 @@
+HRMS Appln v0.1
+	-11Sep2022
+
+Initial cut of Human Resource Management System Appln. We will evolve it
+
+=> HRMS	Users
+	-Employee
+	-Admin
+		-HR General
+		-HR Operations
+		-L&D Team
+		-Managers
+		-...
+
+=> HRMS Employee Options
+
+	Login
+		-Employee Login
+		-Password Change
+
+	Dashboard
+		-Show no of leaves,Permissions
+		-Show recenet Month Payslip
+
+	Profile
+		-View Profile 
+			-Edit (only address and all)
+
+	ALMS
+		-Attendance
+			-should be able to view attendance(no edit)
+		-Leaves
+			-should be able to Apply Leaves
+		-Permissions
+			-should be able to Apply Leaves
+		-Approvals
+			-should show all approvals
+
+	PaySlips
+		-Show month wise payslips
+			-show each month payslip in detail
+			-should be able to print
+
+
+=> HRMS Admin Appln Options
+
+	Login
+		-Admn Login
+		-Profile Edit
+		-Password Change
+
+	Dashboard
+		-Show following
+				-Departments , Employees
+				-.....
+	Employees
+		-List Employee wise complete search fields
+		-Add/Edit/Delete Employee(only soft delete is allowed)
+
+	ALMS
+		-Attendance
+			-should be able to view attendance(no edit)
+			-Should be able to feed new attendance(should be able to connect from device)
+		-Leaves
+			-should show leaves
+			-should be able to approve leaves(if permissions there)
+			-should be able to reject
+		-Permissions
+			-should show Permissions
+			-should be able to approve Permissions(if permissions there)
+			-should be able to reject
+		-Approvals
+			-should show all approvals given so far
+
+	Payrolls
+		-Month Wise Payrools
+		-Should be able to create new Payroll for every new month
+
+	Users
+		Users
+		Permissions
+
+
+
+=> HRMS Datbase
+
+Tables to start with
+
+Employees
+Ths stores all employees data
+
+empl_id					int				PK_EMPL
+empl_frstname				v(60)
+empl_lastname				v(60)
+empl_surname				v(60)
+empl_empid					v(20)
+empl_photo					image
+empl_jondate				date
+empl_dob					date
+empl_designation			v(40)
+empl_offemail				v(60)
+empl_pemail				v(60)
+empl_mobile				int(11)
+empl_altemail				v(60)
+empl_bloodgroup			v(10)
+empl_gender				c(1)
+empl_luudate				datetime
+empl_luuser				int
+empl_address				v(255)
+empl_fname					v(100)		//father name
+
+
+EmployeeParameters
+This store various parameters
+
+empl_id					int
+empr_id					smallint		CPK(1,2)	PK_EMPR
+empr_name					v(60)
+empr_value					v(100)
+empr_luudate				datetime
+empr_luuser				int
+
+
+	
+=> 

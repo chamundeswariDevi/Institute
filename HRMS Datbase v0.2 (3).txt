@@ -1,0 +1,108 @@
+HRMS Datbase v0.2
+	-16Sep2022
+
+
+Employees
+Ths stores all employees data
+
+empl_id					int				PK_EMPL
+empl_frstname				v(60)
+empl_lastname				v(60)
+empl_surname				v(60)
+empl_empid					v(20)
+empl_photo					image
+empl_jondate				date
+empl_dob					date
+empl_designation			v(40)
+empl_offemail				v(60)
+empl_pemail				v(60)
+empl_mobile				int(11)
+empl_altemail				v(60)
+empl_bloodgroup			v(10)
+empl_gender				c(1)
+empl_luudate				datetime
+empl_luuser				int
+empl_address				v(255)
+empl_fname					v(100)		//father name
+
+
+EmployeeParameters
+This store various parameters
+
+empl_id					int
+empr_id					smallint		CPK(1,2)	PK_EMPR
+empr_name					v(60)
+empr_value					v(100)
+empr_luudate				datetime
+empr_luuser				int
+
+
+InductionDocumentTypes
+This table stores different Induction Document Types.
+
+idty_id					tinyint
+idty_code					c(6)			RLVNLT/EXPRLT/HIKELT/RESUME/OFRLTR/MEDRPT
+idty_title					v(100)			Experience Certificate/Releiving Letter/Hike Letter/Graduation Certificate/10th Certificat/+2 Certificate/Skill Certificate/Resume							/Medical Report
+idty_desc					V(255)
+
+
+Candidates
+This table stores all the candidates who have attended the interviews with us
+
+cand_id					int			PK_CAND		// later we will map this to PC ID i.e char(8)
+cand_firstname			varchar(50)
+cand_middlename			varchar(50)
+cand_lastname				varchar(50)
+cand_rdate					date			//registered date
+cand_gender				char(1)			M/F
+cand_dob					date
+cand_email					varchar(100)
+cand_mobile				int
+cand_address				varchar(255)
+cand_ludate				date			//last updated date
+cand_status				char(2)			AC/NA/SU/
+
+
+EmploymentOffers		EOFR
+This table stores Employment Offers given to the candidates
+
+EOFR_id					int			PK_EOFR
+eofr_ref_id				v(100)		//reference ID given on the offer letter, Should be unique
+eofr_cand_id				int			FK(PK_CAND)
+eofr_offerdate			date		//offer given date
+eofr_offeredjob			v(20)
+eofr_reportingdate		date		//date of reporting, by which employee has to join
+eofr_hrmobileno			int
+eofr_hremail				v(100)
+eofr_status				char(4)	INDC-Induction Completed/OFRJ - Offer Rejected / INPR - Offer in process/ OSUS-Offer Suspended 
+
+
+EmploymentOfferDocuments
+This table stores different documents to be produced at the time of joining.
+
+eofd_id					int
+eofd_docindex				tinyint			Comp PK(1,2)	PK_EOFD
+eofd_idty_id				tinyint
+
+Inductions
+This table stores different inductions done. During Induction, we need to ensure that all the documents as per offer letter are submitted.
+
+indc_id					int			PK_INDC
+indc_emof_id				int			FK(PK_INDS)
+indc_date					date		//date of induction
+indc_processed_ausr_id	int			FK(PK_AUSR)
+indc_status				char(4)	CMPD/PCMP/PEND/DRPD		
+
+EmployeeInductionDocuments
+This table stores the different Documents submitted during Induction
+
+empl_id					int
+emid_docindex				tinyint
+emid_idty_id				tinyint
+emid_document				v(500)			//document path
+emid_processed_ausr_id	int			FK(PK_AUSR)
+emid_verified				char(2)			YS/NO/NY
+emid_processeduser_id	int			FK(PK_AUSR)
+
+
+AUSR -maps to the users in Identity database tables.

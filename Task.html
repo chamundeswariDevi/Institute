@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <title>Document</title>
+
+    <title>MASTERENTRY</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content clearfix">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <div class="modal-body">
+                    <h3 class="title">add</h3>
+                    <label for="product_id">product_id:</label>
+                    <input type="number" id="pid" name="product_id"><br><br><br>
+
+
+                    <label for="product_name">product_name:</label>
+                    <input type="text" id="pnm" name="product_category_id"><br><br><br>
+
+                    <label for="product_category_id" input type="text" id="product_category_id" name="product_category_id">product_category_id:</label>
+                    <input type="number" id="pct" name="product_description"><br><br><br>
+
+                    <label for="product_description" input type="text" id="product_description" name="product_description">product_description:</label>
+                    <input type="text" id="pdes" name="hsn_code"><br><br>
+
+                    <label for="product_hsn_code" input type="text" id="product_hsn_code" name="product_hsn_code">hsn_code:</label>
+                    <input type="number" id="phsn" name="phsn"><br><br>
+
+                    <label for="status" id="status" name="status">status:</label>
+                    <input type="text" id="status1" name="status"><br><br>
+
+                    <div class="" id="">
+                    </div>
+                    <button type="button" button id="t1" onclick="AddProducts()">add </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <button type="button" data-toggle="modal" data-target="#modal1">Add products </button> -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1">Add products  </button>
+
+
+
+    <select name="tables" id="tablesid" onchange="getproducts()">
+        
+
+    </select>
+    <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content clearfix">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <div class="modal-body">
+                    <h3 class="title">Edit</h3>
+                    <label for="product_id">product_id:</label>
+                    <input type="number" id="prid1" name="product_id" readonly><br><br><br>
+
+
+                    <label for="product_name">product_name:</label>
+                    <input type="text" id="prnm1" name="product_category_id"><br><br><br>
+
+                    <label for="product_category_id" input type="text" id="product_category_id" name="product_category_id">product_category_id:</label>
+                    <input type="number" id="prct1" name="product_description"><br><br><br>
+
+                    <label for="product_description" input type="text" id="product_description" name="product_description">product_description:</label>
+                    <input type="text" id="prdes1" name="hsn_code"><br><br>
+
+                    <label for="product_hsn_code" input type="text" id="product_hsn_code" name="product_hsn_code">hsn_code:</label>
+                    <input type="number" id="prhsn1" name="phsn"><br><br>
+
+                    <label for="status" id="status" name="status">status:</label>
+                    <input type="text" id="status2r" name="status"><br><br>
+
+                    <div class="" id="">
+                    </div>
+                    <button type="button" button id="t1" onclick="EditProducts()">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content clearfix">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <div class="modal-body">
+                    <h3 class="title">Delete</h3>
+                    <label for="product_id">product_id:</label>
+                    <input type="number" id="pr_id3" name="product_id" readonly><br><br><br>
+
+                    <div class="" id="">
+                    </div>
+                    <button type="button" button id="t1" onclick="DeleteProducts()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <a href="Taskb.html"><button id="t1" onclick="Submit"> Add products</button></a> -->
+    <label for="search">search product id:</label>
+    <input type="number" id="myInput" onkeyup="productid()" placeholder="Search for product_id.." title="Type in a product_id">
+
+    <label for="search">search product name:</label>
+    <input type="search" id="myInput1" onkeyup="productname()" placeholder="Search for product_name.." title="Type in a product_name">
+
+    <label for="search">search categoryid:</label>
+    <input type="search" id="myInput2" onkeyup="categoryid()" placeholder="categoryid.." title="categoryid">
+
+
+
+    <div STYLE="BACKGROUND:COLOR= POWDER rgb(14, 13, 13)">
+        <h1>Products</h1>
+        <div>
+
+            <table id="table" class="table table-dark">
+                <thead>
+                    <tr>
+                        <th>product_id</th>
+                        <th>product_name</th>
+                        <th>product_description</th>
+                        <th>product_category_id</th>
+                        <th>product_category_name</th>
+                        <th>hsn_code</th>
+                        <th>gst</th>
+                        <th>status</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+
+                    </tr>
+                </thead>
+                <tbody id="tablebody">
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+
+</body>
+<script>
+    function demo(v1, v2, v3, v4, v5, v6) {
+
+        // console.log(value1, v1, v2, v3);
+        // console.log(v);
+        document.getElementById("prid1").value = v1;
+        document.getElementById("prnm1").value = v2;
+
+        document.getElementById("prct1").value = v3;
+        document.getElementById("prdes1").value = v4;
+        document.getElementById("prhsn1").value = v5;
+        document.getElementById("status2r").value = v6;
+    }
+    fetch("http://localhost:5278/v1/PPH")
+        .then((data) => {
+            //console.log(data);
+            return data.json(); //converting to object
+        }).then((objectdata) => {
+            console.log(objectdata);
+            let tabledata = "";
+            objectdata.map((values) => {
+                tabledata += `<tr>
+                                    <td>${values.product_id}</td>
+                                    <td>${values.product_name}</td>
+                                    <td>${values.product_description}</td>
+                                    <td>${values.product_category_id}</td>
+                                    <td>${values.product_category_name}</td>
+                                    <td>${values.hsn_code}</td>
+                                    <td>${values.gst}</td>
+                                    <td>${values.status}</td>
+                                    <td><button type="button" onClick ="demo(${values.product_id},'${values.product_name}',${values.product_category_id},'${values.product_description}',${values.hsn_code},'${values.status}')"class="btn btn-primary"  data-toggle="modal" id="editbutton" data-target="#modal2">Edit products </button></td>
+                                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal3">Delete products </button></td>
+                                    </tr>`;
+
+                // let a = document.getElementById("editbutton");
+                //a.setAttribute("onClick", "demo(" + values + ")");
+
+
+                console.log(values.product_id);
+
+
+                $(".myclass tr").click(function() {
+                    window.location = "Task.html";
+                });
+
+
+            });
+
+            document.getElementById("tablebody").innerHTML = tabledata;
+        })
+
+
+
+
+    document.getElementById("t1").onclick = function addProducts() {
+        location.href = "path";
+    }
+
+    let selectedvalue = document.getElementById("tablesid");
+    console.log(selectedvalue);
+    fetch('http://localhost:5278/v1/GetCategoryPPH')
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            for (let item of data) {
+                let option = document.createElement("option");
+                option.value = item.product_category_name;
+                option.text = item.product_category_name;
+
+                selectedvalue.appendChild(option);
+            }
+
+        });
+
+    function getproducts() {
+        let selectedvalue = document.getElementById("tablesid").value;
+        console.log(selectedvalue);
+        fetch("http://localhost:5278/v1/GetPPH?catname=" + selectedvalue, {
+                method: "POST",
+
+            })
+            .then(response => response.json())
+
+        .then((objectdata) => {
+            console.log(objectdata[0].title);
+            let tabledata = "";
+            objectdata.map((values) => {
+                tabledata += `<tr>
+                                    <td>${values.product_name}</td>
+                                    <td>${values.product_description}</td>
+                                    <td>${values.product_category_name}</td>
+                                    <td>${values.hsn_code}</td>
+                                    <td>${values.gst}</td>
+                                    <td>${values.status}</td>
+                                    <td><button type="button" data-toggle="modal"  data-target="#modal2">Edit products </button></td>
+                                    <td><button type="button" data-toggle="modal" data-target="#modal3">Delete products </button></td>  
+                                    
+                                    </tr>`;
+
+
+
+            });
+            document.getElementById("tablebody").innerHTML = tabledata;
+        })
+
+    }
+
+    function onRowClick(tableId, callback) {
+        var table = document.getElementById(table),
+            rows = table.getElementsByTagName("tr"),
+            i;
+        for (i = 0; i < rows.length; i++) {
+            table.rows[i].onclick = function(row) {
+                return function() {
+                    callback(row);
+                };
+            }(table.rows[i]);
+        }
+    };
+
+    onRowClick("mytable", function(row) {
+        var value = row.getElementsByTagName("td")[0].innerHTML;
+        document.getElementById('click-response').innerHTML = value + " clicked!";
+        console.log("value>>", value);
+    });
+
+    // function tableSearch() {
+
+    //     let input, filter, table, tr, td, txtValue;
+    //     input = document.getElementById("search");
+    //     filter = input.value.toUpperCase();
+    //     table = document.getElementById("myTable");
+    //     tr = table.getElementsByTagName("tr");
+    //     for (let i = 0; i < tr.length; i++) {
+    //         td = tr[i].getElementsByTagName("td")[1];
+    //         if (td) {
+    //             txtValue = td.textContent || td.innerText;
+    //             if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    //                 tr[i].style.display = "";
+    //             } else {
+    //                 tr[i].style.display = "none";
+    //             }
+    //         }
+    //     }
+    // }
+
+    function AddProducts() {
+        var pidA = document.getElementById("pid").value;
+        var p_name = document.getElementById("pnm").value;
+        var p_description = document.getElementById("pdes").value;
+        var p_category_id = document.getElementById("pct").value;
+        var p_hsn_code = document.getElementById("phsn").value;
+        var product_status = document.getElementById("status1").value;
+
+        console.log(pidA + p_name + p_description + p_category_id + p_hsn_code + product_status);
+
+        fetch("http://localhost:5278/api/Prods/v1/Add", {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                product_id: pidA,
+                product_name: p_name,
+                product_description: p_description,
+                product_category_id: p_category_id,
+                product_hsn_code: p_hsn_code,
+                status: product_status
+            })
+        })
+
+        .then(response => response.json())
+            .then(data => {
+                console.log(data);
+
+
+                alert("Successfully Added");
+
+            })
+    }
+
+
+    function EditProducts() {
+
+        console.log("pid");
+        var pidA = document.getElementById("prid1").value;
+        var p_name = document.getElementById("prnm1").value;
+        var p_description = document.getElementById("prdes1").value;
+        var p_category_id = document.getElementById("prct1").value;
+        var p_hsn_code = document.getElementById("prhsn1").value;
+        var product_status = document.getElementById("status2r").value;
+        //console.log(pidA + p_name + p_description + p_category_id + p_hsn_code + product_status);
+
+
+        // document.getElementById("pid").value = 1233;
+        // document.getElementById("pnm").value = 'sasasasa';
+        // document.getElementById("pdes").value = 'asasasas';
+        // document.getElementById("pct").value = '101';
+        // document.getElementById("phsn").value = 181818;
+        // document.getElementById("status1").value = 'Deleted';
+        //edit.innerHTML = "Edit";
+        // edit.onclick = function() {
+        //     
+        // }
+
+
+
+
+
+        console.log(pidA + p_name + p_description + p_category_id + p_hsn_code + product_status);
+
+        fetch("http://localhost:5278/api/Prods/v1/Edit", {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    product_id: pidA,
+                    product_name: p_name,
+                    product_description: p_description,
+                    product_category_id: p_category_id,
+                    product_hsn_code: p_hsn_code,
+                    status: product_status
+                })
+            }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                // alert("Edited successfully");
+
+            })
+
+
+
+
+    }
+
+    function DeleteProducts() {
+        //alert("confirm");
+
+        let pr_id = document.getElementById("pr_id3").value;
+
+
+        console.log(pr_id);
+        fetch("http://localhost:5278/v1/DeletePPH?product_id=" + pr_id, {
+                method: "POST",
+                // headers: {
+                //     'Accept': 'application/json',
+                //     'Content-type': 'application/json'
+                // },
+                // body: JSON.stringify({
+                //     product_id: pr_id,
+                // })
+            }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                // alert("Deleted");
+            })
+    }
+
+
+    // $('#search').on('keyup', function() {
+    //     var value = $(this).val();
+    //     console.log(value);
+    //     fetch("http://localhost:5278/v1/PPH")
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             console.log(data);
+    //             var searchpid = searchTable(value, data);
+    //             console.log(searchpid);
+    //             buildTable(searchpid);
+    //         });
+    // })
+
+    // function searchTable(value, data) {
+    //     console.log(data);
+    //     console.log(value);
+    //     var filteredData = [];
+    //     for (var i = 0; i < data.length; i++) {
+    //         var id = data[i].product_id;
+    //         console.log(id);
+    //         if (id.toString().includes(value)) {
+    //             filteredData.push(data[i]);
+    //         }
+    //     }
+    //     console.log(filteredData);
+    //     return filteredData;
+    // }
+
+    // function buildTable(searchpid) {
+    //     let tabledata = "";
+    //     searchpid.foreach((values) => {
+    //         tabledata += `<tr>
+    //                                 <td>${values.product_id}</td>
+    //                                 <td>${values.product_name}</td>
+    //                                 <td>${values.product_description}</td>
+    //                                 <td>${values.product_category_id}</td>
+    //                                 <td>${values.product_category_name}</td>
+    //                                 <td>${values.hsn_code}</td>
+    //                                 <td>${values.gst}</td>
+    //                                 <td>${values.status}</td>
+    //                                 <td><button type="button" data-toggle="modal" data-target="#modal2">Edit products </button></td>
+    //                                 <td><button type="button" data-toggle="modal" data-target="#modal3">Delete products </button></td>
+
+    //                                 </tr>`;
+    //     })
+
+    document.getElementById("tablebody").innerHTML = tabledata;
+    // }
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("table");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function productid() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+
+        filter = input.value.toUpperCase();
+        console.log(filter);
+        table = document.getElementById("table");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function productname() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput1");
+
+        filter = input.value.toUpperCase();
+        console.log(filter);
+        table = document.getElementById("table");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function categoryid() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput2");
+
+        filter = input.value.toUpperCase();
+        console.log(filter);
+        table = document.getElementById("table");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[3];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</html>

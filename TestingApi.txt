@@ -1,0 +1,124 @@
+
+
+--Employee Leave request
+
+[
+  {
+    "empl_id": 1,
+    "elrq_index": 1,
+    "elrq_date": "2022-09-29T00:00:00",
+    "elrq_leavetype": "CASL",
+    "elrq_reason": "personal",
+    "elrq_leavestdate": "2020-03-12T00:00:00",
+    "elrq_leaveenddate": "2020-03-15T00:00:00",
+    "elrq_approvedby": 1,
+    "elrq_approvedremarks": "approved",
+    "elrq_aprvdleavestdate": "2020-03-10T00:00:00",
+    "elrq_aprvdleaveenddate": "2020-03-11T00:00:00"
+  }
+]//working
+Addemployeeleaverequest -working in api
+
+{
+  "empl_id": 2,
+  "elrq_index": 2,
+  "elrq_date": "2022-10-03T13:39:07.822Z",
+  "elrq_leavetype": "CASL",
+  "elrq_reason": "Personal",
+  "elrq_leavestdate": "2022-10-03T13:39:07.822Z",
+  "elrq_leaveenddate": "2022-10-03T13:39:07.822Z",
+  "elrq_approvedby": 2,
+  "elrq_approvedremarks": "approvad",
+  "elrq_aprvdleavestdate": "2022-10-03T13:39:07.822Z",
+  "elrq_aprvdleaveenddate": "2022-10-03T13:39:07.822Z"
+}
+
+GetAllEmployeeOfferDocuments-working
+
+AllEmployeeOfferLetter-working
+
+AddEmployeeOfferLetter-working
+{
+    "eofr_ref_id": "comtron3",
+    "eofr_cand_id": 3,
+    "eofr_offerdat": "2021-09-16T00:00:00",
+    "eofr_offeredjob": "fs",
+    "eofr_reportingdate": "2022-09-12T00:00:00",
+    "eofr_status": "INPR"
+  }
+
+
+AllEmpOptedLeaves-working
+
+AddEmployeeOptedLeave-working
+{
+  "empl_id": 1,
+  "year_id": 2022,
+  "eolv_date": "2022-05-18T16:14:18.819Z",
+  "eolv_leavetype": "East"
+}
+
+
+
+AllHolydays-working
+
+AddHolyday-Working
+
+{
+  "year_id": 2022,
+  "hday_date": "2022-10-03T16:16:33.114Z",
+  "hday_title": "christamas",
+  "hday_type": "MAND"
+}
+
+
+UpdateHolyday-Working
+
+{
+  "hday_title": "christamas",
+  "hday_type": "MAND"
+}
+
+AllInductions-Working
+
+AddInduction-working
+
+{
+  "indc_id": 103,
+  "indc_emof_id": 1,
+  "indc_date": "2022-10-30T16:21:18.129Z",
+  "indc_processed_ausr_id": 1,
+  "indc_status": "ing"
+}
+
+InductionDocumentTypes-Working
+
+JobGradeLevel-Working
+
+AddJobGradeWiseLeaves-Working
+{
+  "jbgr_id": "AA",
+  "jbgr_totalnol": 23,
+  "jbgr_nocl": 13,
+  "jbgr_nosl": 83,
+  "jbgr_nool": 0
+}
+
+GetJobGrdHlds-Working
+
+AddJobGrdHld-Working
+
+{
+  "job_Grade_Id": "AA",
+  "job_Total_NOH": 3
+}
+
+EditJobGrdHld-Working
+
+{
+  "job_Grade_Id": "AB",
+  "job_Total_NOH": 6
+}
+
+
+

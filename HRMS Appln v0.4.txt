@@ -1,0 +1,113 @@
+HRMS Appln v0.4
+	-24Sep2022
+	-16Sep2022
+	-11Sep2022
+
+Initial cut of Human Resource Management System Appln. We will evolve it
+
+=> HRMS	Users
+	-Employee
+	-Admin
+		-HR General
+		-HR Operations
+		-L&D Team
+		-Managers
+		-...
+
+=> HRMS Employee Options
+
+	Login
+		-Employee Login
+		-Password Change
+
+	Dashboard
+		-Show no of leaves,Permissions
+		-Show recenet Month Payslip
+
+	Profile
+		-View Profile 
+			-Edit (only address and all)
+
+	Master Data (Only View)
+		- Holidays
+			-All holidays
+		- Permitted Leaves & Holidays(based on the respective empl job grade)
+			-Leaves Permitted,used & remaining
+			-Holidays Permitted,used & remaining
+
+	ALMS
+		-Attendance
+			-should be able to view attendance(no edit)
+		-Leaves
+			-should be able to Apply Leaves
+		-Permissions
+			-should be able to Apply Leaves
+		-Approvals
+			-should show all approvals
+
+	PaySlips
+		-Show month wise payslips
+			-show each month payslip in detail
+			-should be able to print
+
+
+=> HRMS Admin Appln Options
+
+	Login
+		-Admn Login
+		-Profile Edit
+		-Password Change
+
+	Dashboard
+		-Show following
+				-Departments , Employees
+				-.....
+
+	Offer Letters
+		- All Offers	- Show all the offer letters issued already
+		- New Offers	- Create a screen to generate offer letter for any candidate
+
+	Induction
+		- All Inductions	- Show all inductions done already. 
+		- Clicking on any induction should show the details  of the induction
+		- New Induction		- Create a screen to process new Induction.
+
+	Master Entry (CRUD)
+		- Holidays
+			-
+		- Job Grades
+			-Job Grade Wise Leaves
+			-Job Grade Wise Holidays
+
+
+	Employees
+		-List Employee wise complete search fields
+		-Add/Edit/Delete Employee(only soft delete is allowed)
+
+	ALMS
+		-Attendance
+			-should be able to view attendance(no edit)
+			-Should be able to feed new attendance(should be able to connect from device)
+		-Leaves
+			-should show leaves
+			-should be able to approve leaves(if permissions there)
+			-should be able to reject
+		-Permissions
+			-should show Permissions
+			-should be able to approve Permissions(if permissions there)
+			-should be able to reject
+		-Approvals
+			-should show all approvals given so far
+
+	Payrolls
+		-Month Wise Payrools
+		-Should be able to create new Payroll for every new month
+
+	Users
+		Users
+		Permissions
+
+
+
+	
+=> 

@@ -1,0 +1,97 @@
+//-----------------JobGrades-------------------------
+
+
+create table JobGrades(
+	jbgr_id char(2) primary key,
+	jbgr_name varchar(20),
+	jbgr_desc varchar(100));
+
+
+//--------------JobGradeWiseHolidays------------------------
+
+create table JobGradeWiseHolidays(
+	jbgr_id char(2),
+	jbgr_totalnoh smallint,
+	constraint FK_JGR 
+	foreign key(jbgr_id)
+	references JobGrades(jbgr_id)
+
+);
+
+
+//---------------------JobGradeWiseLeaves--------------------
+
+create table JobGradeWiseLeaves(
+	jbgr_id char(2),
+	jbgr_totalnol smallint,
+	jbgr_nocl smallint,
+	jbgr_nosl smallint,
+	jbgr_nool smallint,
+	constraint FK_JGR 
+	foreign key(jbgr_id)
+	references JobGrades(jbgr_id)
+);
+
+//---------------------EmployeeOptedLeaves--------------------
+
+create table JobGradeWiseLeaves(
+	empl_id int,
+	year_id smallint,
+	eolv_date date,
+	eolv_leavetype char(4),
+	constraint FK_EID 
+	foreign key(empl_id)
+	references Employees(empl_id),
+	primary key(empl_id,year_id)
+);	
+
+//---------------------EmployeeAttendance--------------------
+
+create table EmployeeAttendance(
+	empl_id  int,
+	empl_pindex smallint,
+	eatn_punch_in char(4),
+	eatn_punch_out char(4),
+	eatn_punchsystem varchar(20),
+	constraint FK_EID
+	foreign key(empl_id)
+	references Employees(empl_id),
+	primary key(empl_id,empl_pindex)
+);
+
+
+//------------------Holidays-------------------------------------
+
+create table Holidays(
+	year_id smallint,
+	hday_date date,
+	hday_title varchar(60),
+	hday_type char(4),
+	primary key(year_id,hday_date)
+);
+
+//------------------EmployeeLeaveRequests-------------------------------------
+
+create table EmployeeLeaveRequests(
+	empl_id int,
+	elrq_index smallint,
+	elrq_date date,
+	elrq_leavetype char(4),
+	elrq_reason varchar(200),
+	elrq_leavestdate date,
+	elrq_leaveenddate date,
+	elrq_approvedby int,
+	elrq_approvedremarks varchar(200)
+	elrq_aprvdleavestdate date,
+	elrq_aprvdleaveenddate date,
+	constraint FK_EID
+	foreign key(empl_id)
+	references Employees(empl_id),
+	constraint FK_Apr
+	foreign key(elrq_approvedby)
+	references Employees(empl_jbgr_id),
+	
+);
+
+
+

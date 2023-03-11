@@ -1,0 +1,78 @@
+                                     SMOKE TESTING
+                             Inventory Store Management System
+
+ DASHBOARD :
+
+     1.Procurement:
+            Purchase Order : Create Purchase order not working.
+            GRN : Not working[full]
+                  create new Grn not working. 
+            Purchase returns : not working and creating new purchase return.
+     
+     2.Main Inventory : 
+            Customset : No Data.
+            Products Stock : Swagger Error.
+            EStore Stock : Not working.
+            Indents Products : [Search by Date
+                                Search by status
+                                Create New Indents]--- Not working.
+
+     3.Estore Inventory : 
+                Indents : Create indents not working.
+                estore stock : error not working not responing
+                Issuse return : not working
+
+     4.Master Entry:
+               Product : 1.Search by Product category ID(Not working)
+                         2.Sort by not working category Name
+                         3.Create new product,product name taking both Alpha numeric.
+               HSN code : Search by GST not working.
+                          Delete Hsn code not working.
+               Product Category : Search by Product category name not working.
+                                  Add create product category not working.
+               Customset : No Data.
+               Vendor Master Entry : Add vender not working.
+                                     Delete not working.  
+                                     Edit not working.
+
+      5. Return Order : Null
+
+      6.Reports :
+               EStore order : No Data.
+               Product Below Reorder level : No Data.
+               Cancel Order : No Data.
+               Issues : Code Error.
+               Indents Return : Error.
+               E-store Orders : No Data.
+               Indents Between two Dates : Error.
+               Vendor Grn : working.
+      
+      7.Users : Register Not Working.
+                Login Not Working.
+      
+      8.Submit : Sumbit Not Working.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

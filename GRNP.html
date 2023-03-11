@@ -1,0 +1,547 @@
+<html>
+
+<head>
+    <title>GRN Master Entry</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+
+<body align="center">
+    <H2 STYLE="BACKGROUND:COLOR= POWDER rgb(10, 10, 10)"> GRN Master Entry </H2>
+
+    <!-- <button id='getData5' onclick="add()">Add Vendor</button> -->
+    <div align="center">
+    </div>
+    <br>
+    <br>
+
+
+
+    <div class="modal fade" id="myyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content clearfix">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <div class="modal-body">
+                    <h3 class="title">Add grn</h3>
+                    <div class="form-group">
+                        <span class="input-icon"><i class="fa fa-user"></i></span>
+                        <input type="number" id="1" class="form-control" placeholder="grn_id">
+                    </div>
+                    <div class="form-group">
+                        <span class="input-icon"><i class="fa fa-user"></i></span>
+                        <input type="number" id="2" class="form-control" placeholder="batch_no">
+                    </div>
+                    <div class="form-group">
+                        <span class="input-icon"><i class="fas fa-key"></i></span>
+                        <input type="text" id="3" class="form-control" placeholder="product_id">
+                    </div>
+                    <div class="form-group">
+                        <span class="input-icon"><i class="fa fa-user"></i></span>
+                        <input type="number" id="477" class="form-control" placeholder="quantity">
+                    </div>
+                    <div class="form-group">
+                        <span class="input-icon"><i class="fa fa-user"></i></span>
+                        <input type="number" id="5" class="form-control" placeholder="price">
+                    </div>
+                    <div class="form-group">
+                        <span class="input-icon"><i class="fa fa-user"></i></span>
+                        <input type="number" id="6" class="form-control" placeholder="gst">
+                    </div>
+                    <div class="form-group">
+                        <span class="input-icon"><i class="fa fa-user"></i></span>
+                        <input type="text" id="7" class="form-control" placeholder="status">
+                    </div>
+                    <button class="btn" data-dismiss="modal" aria-label="Close" onclick="add()">Add GRN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <label for="search">search grn id:</label>
+    <input type="search" id="myInput" onkeyup="grn_id()" placeholder="Search for grnid.." title="Type in a gnr id">
+
+
+    <label for="search">search product name:</label>
+    <input type="search" id="myInput1" onkeyup="productid()" placeholder="Search for product id.." title="Type in a product_name">
+
+    <button type="button" data-toggle="modal" data-target="#myyModal">Add grn </button>
+
+    <br> <br> <br>
+
+    <br> <br> <br>
+
+
+
+
+    <div STYLE="BACKGROUND:COLOR= POWDER rgb(14, 13, 13)">
+        <h1>GRN</h1>
+        <table id="usrtable" border="3" align="center">
+            <tr>
+
+                <th> gnr_id </th>
+                <th> batch_no </th>
+                <th> product_id</th>
+                <th> quantity </th>
+                <th>price </th>
+                <th> gst </th>
+                <th>status</th>
+                <th> Edit/Delete </th>
+
+
+            </tr>
+
+        </table>
+        <div class="modal fade" id="usermodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content clearfix">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true"></span></button>
+                    <div class="modal-body" id="popupID">
+                        <form id="myForm">
+                            <table align="center">
+
+                                <tr>
+                                    <th><label for="11"><b>grn id</b></label></th>
+                                    <td><input type="number" placeholder="grn_id" name="grn_id" id="11" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><label for="22"><b>batch no</b></label></th>
+                                    <td><input type="number" placeholder="batch_no" name="batch_no" id="22">
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><label for="33"><b>product id</b></label></th>
+                                    <td><input type="text" placeholder="product id" name="product id" id="33"> </td>
+                                </tr>
+                                <tr>
+                                    <th><label for="44"><b>quantity</b></label></th>
+                                    <td><input type="number" placeholder="quantity" name="quantity" id="44"> </td>
+                                </tr>
+                                <tr>
+                                    <th><label for="55"><b>price</b></label></th>
+                                    <td><input type="number" placeholder="price" name="price" id="55"> </td>
+                                </tr>
+                                <tr>
+                                    <th><label for="66"><b>gst</b></label></th>
+                                    <td><input type="number" placeholder="gst" name="gst" id="66">
+                                </tr>
+
+                                <tr>
+                                    <th><label for="77"><b>status</b></label></th>
+                                    <td><input type="text" placeholder="status" name="status" id="77">
+                                </tr>
+
+
+                            </table>
+                        </form>
+                        <button onclick="edit()">Save</button>
+                        <table border="2px" id="tid"></table>
+                        <div class="infoprofle"></div> <br>
+
+                        <!-- <button onclick="del()">Delete</button>
+                    <table border="2px" id="tid"></table>
+                    <div class="infoprofle"></div> <br> -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <body style="background-color: rgb(141, 141, 185);">
+
+            </table>
+
+            <script>
+                //only text
+
+
+
+                function add() {
+                    var grn_i = document.getElementById("1").value;
+                    var batch_n = document.getElementById("2").value;
+                    var product_i = document.getElementById("3").value;
+                    var quantit = document.getElementById("477").value;
+                    var pric = document.getElementById("5").value;
+                    var gs = document.getElementById("6").value;
+                    var s = document.getElementById("7").value;
+
+                    console.log(grn_i + batch_n + product_i + quantit + pric + gs + s);
+                    const uri8 = 'http://localhost:5278/api/GRNP/v1/AddNewGrn';
+                    const initDetails8 = {
+                        method: 'post',
+                        //body: new FormData(document.getElementById("myForm")),
+                        body:
+
+                            JSON.stringify({
+                            "grn_id": grn_i,
+
+                            "batch_no": batch_n,
+                            "product_id": product_i,
+                            "quantity": quantit,
+                            "price": pric,
+                            "gst": gs,
+                            "status": s
+
+
+                        }),
+                        headers: {
+                            "Content-Type": "application/json; charset=utf-8"
+                        },
+                        mode: "cors"
+                    }
+
+
+
+                    fetch(uri8, initDetails8)
+                        .then(response => {
+                            if (response.status !== 200) {
+                                console.log('Looks like there was a problem. Status Code: ' +
+                                    response.status);
+                                return;
+                            }
+
+                            console.log(response.headers.get("Content-Type"));
+                            return response.json();
+                        })
+                        .then(myJson => {
+                            let ut = document.getElementById("usrtable");
+                            ut.innerHTML = "";
+                            myJson.forEach(element => {
+
+                                //create the row dynamically
+                                const row = document.createElement("tr");
+
+                                //create the first cell i.e name
+                                const cell1 = document.createElement("td");
+                                const cell1Text = document.createTextNode(element.grn_i);
+                                cell1.appendChild(cell1Text);
+                                row.appendChild(cell1);
+
+
+                                //create second cell i.e for email
+                                const cell2 = document.createElement("td");
+                                const cell2Text = document.createTextNode(element.batch_no);
+                                cell2.appendChild(cell2Text);
+                                row.appendChild(cell2);
+
+                                //create Third cell
+                                const cell3 = document.createElement("td");
+                                const cell3Text = document.createTextNode(element.product_id);
+                                cell3.appendChild(cell3Text);
+                                row.appendChild(cell3);
+
+                                //create fourth cell
+                                const cell4 = document.createElement("td");
+                                const cell4Text = document.createTextNode(element.quantity);
+                                cell4.appendChild(cell4Text);
+                                row.appendChild(cell4);
+
+                                //create fifth cell
+                                const cell5 = document.createElement("td");
+                                const cell5Text = document.createTextNode(element.price);
+                                cell5.appendChild(cell5Text);
+                                row.appendChild(cell5);
+
+                                //create sixth cell
+                                const cell6 = document.createElement("td");
+                                const cell6Text = document.createTextNode(element.gst);
+                                cell6.appendChild(cell6Text);
+                                row.appendChild(cell6);
+
+
+                                //create seventh cell
+                                const cell7 = document.createElement("td");
+                                const cell7Text = document.createTextNode(element.status);
+                                cell6.appendChild(cell7Text);
+                                row.appendChild(cell7);
+
+
+
+                                //row.setAttribute("onClick", "display(" + element.grN_ID + ")");
+                                //row.setAttribute("data-toggle", "modal");
+                                //row.setAttribute("data-target", "#usermodal");
+
+
+                                ut.appendChild(row);
+
+
+                            });
+                            console.log(JSON.stringify(myJson));
+
+
+
+                        })
+                        .catch(err => {
+                            console.log('Fetch Error :-S', err);
+                        });
+                }
+
+
+                function edit() {
+                    var gnri = document.getElementById("11").value;
+
+                    var quantity1 = document.getElementById("44").value;
+
+                    console.log(gnri);
+
+                    const uri9 = 'http://localhost:5278/api/GRNP/v1/EditGRN';
+
+                    const initDetails9 = {
+                        method: 'post',
+
+                        body:
+
+                            JSON.stringify({
+                            grn_id: gnri,
+                            quantity: quantity1
+                        }),
+                        headers: {
+                            "Content-Type": "application/json; charset=utf-8"
+                        },
+                        mode: "cors"
+                    }
+
+
+
+                    fetch(uri9, initDetails9)
+                        .then(response => {
+                            //console.log(response);
+                            if (response.status !== 200) {
+                                console.log('Looks like there was a problem. Status Code: ' +
+                                    response.status);
+                                return;
+                            }
+
+                            console.log(response.headers.get("Content-Type"));
+                            return response.json();
+                        })
+                        .then(myJson => {
+                            console.log(myJson);
+                            location.reload();
+
+
+                        })
+                        .catch(err => {
+                            console.log('Fetch Error :-S', err);
+                        });
+                }
+
+                // function del() {
+                //     var gid = document.getElementById("11").value;
+                //     console.log(gid);
+
+                //     const uri4 = 'http://localhost:5278/api/GRNP/v1/Delete';
+                //     const initDetails4 = {
+                //         method: 'post',
+
+                //         mode: "cors"
+                //     }
+
+                //     fetch(uri4, initDetails4)
+                //         .then(response => {
+                //             if (response.status !== 200) {
+                //                 console.log('Looks like there was a problem. Status Code: ' +
+                //                     response.status);
+                //                 return;
+                //             }
+
+                //             console.log(response.headers.get("Content-Type"));
+                //             return response.json();
+                //         })
+                //         .then(myJson => {
+                //             console.log(myJson);
+                //             location.reload();
+
+                //         })
+                //         .catch(err => {
+                //             console.log('Fetch Error :-S', err);
+                //         });
+                // }
+
+                fetch('http://localhost:5278/api/GRNP/v1/GRN')
+
+                .then((response) => response.json())
+                    .then((data) => {
+                        let ut = document.getElementById("usrtable");
+
+                        console.log(data);
+                        data.forEach(element => {
+
+
+                            //create the row dynamically
+                            const row = document.createElement("tr");
+
+                            //create the first cell i.e name
+                            const cell1 = document.createElement("td");
+                            const cell1Text = document.createTextNode(element.grn_id);
+                            cell1.appendChild(cell1Text);
+                            row.appendChild(cell1);
+
+
+                            //create second cell i.e for email
+                            const cell2 = document.createElement("td");
+                            const cell2Text = document.createTextNode(element.batch_no);
+                            cell2.appendChild(cell2Text);
+                            row.appendChild(cell2);
+
+                            //create Third cell
+                            const cell3 = document.createElement("td");
+                            const cell3Text = document.createTextNode(element.product_id);
+                            cell3.appendChild(cell3Text);
+                            row.appendChild(cell3);
+
+                            //create fourth cell
+                            const cell4 = document.createElement("td");
+                            const cell4Text = document.createTextNode(element.quantity);
+                            cell4.appendChild(cell4Text);
+                            row.appendChild(cell4);
+
+                            //create fifth cell
+                            const cell5 = document.createElement("td");
+                            const cell5Text = document.createTextNode(element.price);
+                            cell5.appendChild(cell5Text);
+                            row.appendChild(cell5);
+
+                            //create sixth cell
+                            const cell6 = document.createElement("td");
+                            const cell6Text = document.createTextNode(element.gst);
+                            cell6.appendChild(cell6Text);
+                            row.appendChild(cell6);
+
+                            //create 7 cell
+                            const cell7 = document.createElement("td");
+                            const cell7Text = document.createTextNode(element.status);
+                            cell7.appendChild(cell7Text);
+                            row.appendChild(cell7);
+
+
+                            //create 8 cell
+                            const cell8 = document.createElement("td");
+                            let edit = document.createElement("button");
+                            //row.setAttribute("onClick", "display(" + element.grN_ID + ")");
+                            edit.innerHTML = "Edit";
+                            edit.onclick = function() {
+                                document.getElementById("11").value = element.grn_id;
+                                document.getElementById("22").value = element.batch_no;
+                                document.getElementById("33").value = element.product_id;
+                                document.getElementById("44").value = element.quantity;
+                                document.getElementById("55").value = element.price;
+                                document.getElementById("66").value = element.gst;
+                                document.getElementById("77").value = element.status;
+
+                            }
+                            edit.setAttribute("data-toggle", "modal");
+                            edit.setAttribute("data-target", "#usermodal");
+
+
+
+
+                            cell8.appendChild(edit);
+
+                            let del = document.createElement("button");
+                            del.innerHTML = "Delete";
+                            del.onclick = function() {
+
+
+                                var gid = element.grn_id;
+                                console.log(gid);
+                                const uri4 = 'http://localhost:5278/api/GRNP/v1/Delete';
+                                //console.log(gnr_id);
+                                const initDetails4 = {
+                                    method: 'post',
+                                    body: gid,
+
+                                    headers: {
+                                        "Content-Type": "application/json; charset=utf-8"
+                                    },
+
+                                    mode: "cors"
+                                }
+
+                                //  console.log(g);
+
+
+
+
+                                fetch(uri4, initDetails4)
+                                    .then(response => {
+                                        if (response.status !== 200) {
+                                            console.log('Looks like there was a problem. Status Code: ' +
+                                                response.status);
+                                            return;
+                                        }
+
+                                        console.log(response.headers.get("Content-Type"));
+                                        return response.json();
+                                    })
+
+
+
+                            }
+
+
+                            cell8.appendChild(del);
+                            row.appendChild(cell8);
+
+                            ut.appendChild(row);
+
+
+                        });
+                    });
+
+                function grn_id() {
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("myInput");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("usrtable");
+                    tr = table.getElementsByTagName("tr");
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[0];
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
+                        }
+                    }
+                }
+
+                function productid() {
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("myInput1");
+
+                    filter = input.value.toUpperCase();
+                    console.log(filter);
+                    table = document.getElementById("usrtable");
+                    tr = table.getElementsByTagName("tr");
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[2];
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
+                        }
+                    }
+                }
+            </script>
+            <br>
+
+            <br>
+
+
+        </body>
+
+</html>

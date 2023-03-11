@@ -1,0 +1,15 @@
+install nlog packages
+
+copy nlog.config to project
+
+create logs folder
+add logs folder path in nlog.config
+
+create utilities folder and add nloggermanager.cs
+
+extract interface from nloggermanager and put it in contracts
+
+add injection in program.cs
+builder.Services.AddSingleton<ILoggerManager,NLoggerManager>();
+
+add ILoggerManager log in controller's constructor

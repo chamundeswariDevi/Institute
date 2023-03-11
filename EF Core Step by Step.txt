@@ -1,0 +1,464 @@
+EF Core Step by Step
+	-7Sep2021
+
+1.Install the packages using Package Manager
+
+> Microsoft.EntityFrameworkCore
+> Microsoft.EntityFrameworkCore.Tools
+> Microsoft.EntityFrameworkCore.SqlServer
+> Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+
+2. Write Model Classes
+
+public class Employee {
+        public int Id { get; set; }
+
+        public int EmpNo { get; set; }
+        public string EName { get; set; }
+        public string Job { get; set; }
+        public double Sal { get; set; }
+        public int DeptNo { get; set; }
+    }
+
+3. Create the database context
+
+ using System.ComponentModel.DataAnnotations.Schema;
+ public class EmployeeContext : DbContext{
+    public EmployeeContext(DbContextOptions<EmployeeContext> options) : base(options){
+    }
+        public DbSet<Employee> Employees { get; set; }
+    }
+    protected override void OnModelCreating(ModelBuilder modelBuilder) {
+            modelBuilder.Entity<Employee>().ToTable("Employees");
+    }
+
+4.Register the EmployeeContext
+
+Register DbContext i.e EmployeeContext during startup in startup.cs through Dependency injection. So that Components that require these services, such as MVC controllers, are provided these services via constructor parameters. 
+
+=====appsettings.json========
+
+{
+  "ConnectionStrings": {
+    "csdevsql": "Server=NIMAIKRSNA\\NIMAIKRSNA;Database=Sample;Trusted_Connection=true"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*"
+
+------------------startup.cs----------
+        public void ConfigureServices(IServiceCollection services){
+
+            services.AddDbContext<EmployeeContext>(options =>
+    options.UseSqlServer(Configuration.GetConnectionString("csdevsql")));
+
+            services.AddControllersWithViews();
+        }
+
+5. Get the Migration done
+	
+a. go to PMC (menu/tools/package manager/pmc)
+b. pm> add-migration EmpSnap
+pm> update-database
+pm> remove-migration
+
+
+6. Add Constructor to Controller for automatic injection
+
+  public class HomeController : Controller{
+
+        private readonly EmployeeContext context;
+
+        public HomeController(EmployeeContext ctxt){
+            context = ctxt;
+        }
+
+& Add the code 
+
+            Employee e = new Employee();
+            e.EmpNo = 90;
+            e.EName = "Madhu";
+            e.Job = "Analyst";
+            e.Sal = 70000;
+            e.DeptNo = 1;
+
+            context.Employees.Add(e);
+            context.SaveChanges();
+
+
+---------Reference  Program.cs----------- 
+
+public class Program{
+        public static void Main(string[] args){
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder => {
+                    webBuilder.UseStartup<Startup>();
+                });
+        }
+
+
+======================Standard Example from Beginnig to End ==============
+
+1.Install the packages using Package Manager
+
+> Microsoft.EntityFrameworkCore
+> Microsoft.EntityFrameworkCore.Tools
+> Microsoft.EntityFrameworkCore.SqlServer
+> Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+
+2. Write Model Classes
+
+ public class Student {
+        public int ID { get; set; }
+        public string LastName { get; set; }
+        public string FirstMidName { get; set; }
+        public DateTime EnrollmentDate { get; set; }
+
+        public ICollection<Enrollment> Enrollments { get; set; }
+    }
+
+    public class Course{
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int CourseID { get; set; }
+        public string Title { get; set; }
+        public int Credits { get; set; }
+
+        public ICollection<Enrollment> Enrollments { get; set; }
+    }
+
+    public class Enrollment{
+        public int EnrollmentID { get; set; }
+        public int CourseID { get; set; }
+        public int StudentID { get; set; }
+        public Grade? Grade { get; set; }
+
+        public Course Course { get; set; }
+        public Student Student { get; set; }
+    }
+    
+    public enum Grade {
+        A, B, C, D, F
+    }
+
+Note : DatabaseGenerated(DatabaseGeneratedOption.None)=> This attribute allows entering the PK for the course rather than having the database generate it.
+
+3. Create the database context
+
+ using System.ComponentModel.DataAnnotations.Schema;
+ public class SchoolContext : DbContext{
+        public SchoolContext(DbContextOptions<SchoolContext> options) : base(options){
+        }
+
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Enrollment> Enrollments { get; set; }
+        public DbSet<Student> Students { get; set; }
+    }
+
+Note : When the database is created, EF creates tables that have names the same as the DbSet property names.
+
+4. If you want to control table names, then Update School Context by
+	overriding OnModelCreating (Optional Step)
+
+using Microsoft.EntityFrameworkCore;
+
+   public class SchoolContext : DbContext{
+        public SchoolContext(DbContextOptions<SchoolContext> options) : base(options){
+        }
+
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Enrollment> Enrollments { get; set; }
+        public DbSet<Student> Students { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder){
+            modelBuilder.Entity<Course>().ToTable("Course");
+            modelBuilder.Entity<Enrollment>().ToTable("Enrollment");
+            modelBuilder.Entity<Student>().ToTable("Student");
+        }
+    }
+
+5. Register the SchoolContext
+
+Register DbContext i.e SchoolContext during startup in startup.cs through Dependency injection. So that Components that require these services, such as MVC controllers, are provided these services via constructor parameters. 
+
+=====Startup.cs====
+
+Add the following Code
+
+        public void ConfigureServices(IServiceCollection services){
+
+            services.AddDbContext<SchoolContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("csdevsql")));
+
+            services.AddControllersWithViews();
+        }
+
+
+Note: Define the connection string "csdevsql" in appln config file 
+	appsettings.json
+
+=====appsettings.json========
+
+{
+  "ConnectionStrings": {
+    "csdevsql": "Server=NIMAIKRSNA\\NIMAIKRSNA;Database=Test;Trusted_Connection=true"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*"
+}
+
+
+6. Add the database exception filter(Optional Step)
+
+=========startup.cs========
+
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDbContext<SchoolContext>(options =>
+        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+    services.AddDatabaseDeveloperPageExceptionFilter();
+
+    services.AddControllersWithViews();
+}
+
+7. Initialize the database tables  with test data
+
+    public static class DbInitializer{
+        public static void Initialize(SchoolContext context){
+
+            context.Database.EnsureCreated();
+
+            // Look for any students.
+            if (context.Students.Any()){
+                return;   // DB has been seeded
+            }
+
+            var students = new Student[]{
+            new Student{FirstMidName="Carson",LastName="Alexander",EnrollmentDate=DateTime.Parse("2005-09-01")},
+            new Student{FirstMidName="Meredith",LastName="Alonso",EnrollmentDate=DateTime.Parse("2002-09-01")},
+            new Student{FirstMidName="Arturo",LastName="Anand",EnrollmentDate=DateTime.Parse("2003-09-01")},
+            new Student{FirstMidName="Gytis",LastName="Barzdukas",EnrollmentDate=DateTime.Parse("2002-09-01")},
+            new Student{FirstMidName="Yan",LastName="Li",EnrollmentDate=DateTime.Parse("2002-09-01")},
+            new Student{FirstMidName="Peggy",LastName="Justice",EnrollmentDate=DateTime.Parse("2001-09-01")},
+            new Student{FirstMidName="Laura",LastName="Norman",EnrollmentDate=DateTime.Parse("2003-09-01")},
+            new Student{FirstMidName="Nino",LastName="Olivetto",EnrollmentDate=DateTime.Parse("2005-09-01")}
+            };
+
+            foreach (Student s in students){
+                context.Students.Add(s);
+            }
+	
+	    //save
+            context.SaveChanges();
+
+            var courses = new Course[] {
+            new Course{CourseID=1050,Title="Chemistry",Credits=3},
+            new Course{CourseID=4022,Title="Microeconomics",Credits=3},
+            new Course{CourseID=4041,Title="Macroeconomics",Credits=3},
+            new Course{CourseID=1045,Title="Calculus",Credits=4},
+            new Course{CourseID=3141,Title="Trigonometry",Credits=4},
+            new Course{CourseID=2021,Title="Composition",Credits=3},
+            new Course{CourseID=2042,Title="Literature",Credits=4}
+            };
+
+            foreach (Course c in courses){
+                context.Courses.Add(c);
+            }
+
+            context.SaveChanges();
+
+            var enrollments = new Enrollment[]{
+            new Enrollment{StudentID=1,CourseID=1050,Grade=Grade.A},
+            new Enrollment{StudentID=1,CourseID=4022,Grade=Grade.C},
+            new Enrollment{StudentID=1,CourseID=4041,Grade=Grade.B},
+            new Enrollment{StudentID=2,CourseID=1045,Grade=Grade.B},
+            new Enrollment{StudentID=2,CourseID=3141,Grade=Grade.F},
+            new Enrollment{StudentID=2,CourseID=2021,Grade=Grade.F},
+            new Enrollment{StudentID=3,CourseID=1050},
+            new Enrollment{StudentID=4,CourseID=1050},
+            new Enrollment{StudentID=4,CourseID=4022,Grade=Grade.F},
+            new Enrollment{StudentID=5,CourseID=4041,Grade=Grade.C},
+            new Enrollment{StudentID=6,CourseID=1045},
+            new Enrollment{StudentID=7,CourseID=3141,Grade=Grade.A},
+            };
+
+            foreach (Enrollment e in enrollments){
+                context.Enrollments.Add(e);
+            }
+
+            context.SaveChanges();
+        }
+    }
+
+Note :  context.Database.EnsureCreated() method is used to automatically create the database. We can Migrations to change the database schema instead of dropping and re-creating the database each time.
+
+8. Initialize the database on startup
+
+=======program.cs=========
+
+      public static void Main(string[] args)
+        {
+            var host = CreateHostBuilder(args).Build();
+
+            CreateDbIfNotExists(host);
+
+            host.Run();
+
+        }
+
+        private static void CreateDbIfNotExists(IHost host){
+            using (var scope = host.Services.CreateScope()){
+                var services = scope.ServiceProvider;
+                try{
+                    var context = services.GetRequiredService<SchoolContext>();
+                    DbInitializer.Initialize(context);
+                }
+                catch (Exception ex){
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred creating the DB.");
+                }
+            }
+        }
+
+What is being done:
+
+1. Get a database context instance from the dependency injection container.
+
+2. Call the DbInitializer.Initialize method.
+
+3. Dispose the context when the Initialize method completes as shown in the following code:
+
+The preceding code checks if the database exists:
+
+If the database is not found;
+It is created and loaded with test data. It loads test data into arrays rather than List<T> collections to optimize performance.
+If the database is found, it takes no action.
+
+
+public class StudentsController : Controller{
+        private readonly SchoolContext _context;
+
+        public StudentsController(SchoolContext context){
+            _context = context;
+        }
+        .......
+
+        // GET: Students/ListStudents
+        public IActionResult ListStudents()
+        {
+            //DbInitializer.Initialize(_context);
+            return View(_context.Students.ToList());
+        }
+
+}
+
+
+
+==============end=============
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------
+Menu>Tools>NuGet Package Manager>PMC
+
+PM> Add-Migration SchoolDB	-SchoolDB is the name of the migration Snapshot name
+
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------
+What is Database.EnsureCreated?
+
+context.Database.EnsureCreated() is new EF core method which ensures that the database for the context exists. If it exists, no action is taken. If it does not exist then the database and all its schema are created and also it ensures it is compatible with the model for this context.
+
+Note: This method does not use migrations to create the database. In addition, the database that is created cannot later be updated using migrations. If you are targeting a relational database and using migrations, you can use the DbContext.Database.Migrate() method to ensure the database is created and all migrations are applied.
+
+How did we do that with EF 6?
+
+context.Database.EnsureCreated() is equivalent to the below listed approaches of EF 6:
+
+Package Manager Console:
+
+Enable-Migrations -EnableAutomaticMigrations. Add-Migration/Update-Database.
+
+From code:
+
+Database.SetInitializer CreateDatabaseIfNotExists
+
+or
+
+With DbMigrationsConfiguration and set AutomaticMigrationsEnabled = true;
+
+What is Database.Migrate?
+
+Applies any pending migrations for the context to the database. Will create the database if it does not already exist.
+
+How did we do that with EF 6?
+
+context.Database.Migrate() is equivalent to the below listed approaches of EF 6:
+
+Package Manager Console:
+
+Update-Database -TargetMigration
+
+With a custom DbMigrationsConfiguration:
+
+AutomaticMigrationsEnabled = false; or with DbMigrator.
+
+Conclusion:
+
+If you are using migrations there is context.Database.Migrate(). If you don't want migrations and just want a quick database (usually for testing) then use context.Database.EnsureCreated()/EnsureDeleted().
+
+
