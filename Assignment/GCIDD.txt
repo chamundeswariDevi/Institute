@@ -1,0 +1,31 @@
+Deserialization:The process of bites converted into objects.
+syntax: 
+binaryformat bft =new binaryformat();
+bft.Deeserialize();
+
+private void Deserialize(object sender, EventArgs e)  
+{  
+    Employee emp = new Employee();  
+  
+    BinaryFormatter bf = new BinaryFormatter();  
+  
+    FileStream fsin = new FileStream("employee.binary", FileMode.Open, FileAccess.Read, FileShare.None);  
+    try  
+    {  
+        using (fsin)  
+        {  
+            emp = (Employee) bf.Deserialize(fsin);  
+            label.Text = "Object Deserialized";  
+  
+            textBoxName.Text = emp.name;  
+            textBoxPhone.Text = emp.phone;  
+            dateTimePickerDoB.Value = emp.dob;  
+            textBoxDepartment.Text = emp.department;  
+            textBoxSalary.Text = emp.salary.ToString();  
+        }  
+    }  
+    catch  
+    {  
+        label.Text = "An error has occured";  
+    }  
+}  
